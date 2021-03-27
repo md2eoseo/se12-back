@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": ""
+    "dev": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/md2eoseo/se12-back/issues"
   },
-  "homepage": "https://github.com/md2eoseo/se12-back#readme"
+  "homepage": "https://github.com/md2eoseo/se12-back#readme",
+  "dependencies": {
+    "apollo-server": "^2.22.1",
+    "graphql": "^15.5.0"
+  }
 }
