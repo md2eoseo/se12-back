@@ -19,3 +19,18 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Item {
+  id        Int     @id @default(autoincrement())
+  title     String
+  author    String
+  price     String
+  contents  String
+  category  String
+  publicher String
+  isbn      String @unique
+  pressDate String
+  activate  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
