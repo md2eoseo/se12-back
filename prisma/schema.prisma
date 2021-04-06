@@ -24,10 +24,10 @@ model Item {
   id        Int     @id @default(autoincrement())
   title     String
   author    String
-  price     String
+  price     Int
   contents  String
   category  String
-  publicher String
+  publisher String
   isbn      String @unique
   pressDate String
   activate  Boolean
