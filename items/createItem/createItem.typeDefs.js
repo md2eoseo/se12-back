@@ -16,8 +16,6 @@ export default gql`
       isbn: String!
       pressDate: String!
       activate: Boolean!
-      createdAt: String!
-      updatedAt: String!
     ): CreateItemResponse!
   }
 `;
