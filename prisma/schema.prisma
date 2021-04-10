@@ -25,7 +25,7 @@ model Item {
   title     String
   author    String
   price     Int
-  contents  String
+  contents  String?
   category  String
   publisher String
   isbn      String @unique
