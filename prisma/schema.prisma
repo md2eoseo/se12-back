@@ -21,14 +21,14 @@ model User {
 }
 
 model Item {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   title     String
   author    String
   price     Int
   contents  String?
   category  String
   publisher String
-  isbn      String @unique
+  isbn      String   @unique
   pressDate String
   activate  Boolean
   createdAt DateTime @default(now())

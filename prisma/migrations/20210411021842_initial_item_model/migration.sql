@@ -1,10 +1,10 @@
-g-- CreateTable
+-- CreateTable
 CREATE TABLE "Item" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
-    "contents" TEXT NOT NULL,
+    "contents" TEXT,
     "category" TEXT NOT NULL,
     "publisher" TEXT NOT NULL,
     "isbn" TEXT NOT NULL,
