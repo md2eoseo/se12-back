@@ -7,6 +7,6 @@ export default gql`
     user: User
   }
   type Query {
-    getUser(email: String!): GetUserResponse!
+    getUser(id: Int!): GetUserResponse!
   }
 `;
