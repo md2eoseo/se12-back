@@ -1,3 +1,4 @@
+import { Role } from '.prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import client from '../../client';
@@ -19,7 +20,7 @@ export default {
           return { ok: false, error: '비밀번호가 일치하지 않습니다.' };
         }
         // JWT 발급
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY);
+        const token = jwt.sign({ id: user.id, admin: user.role === Role.ADMIN }, process.env.JWT_SECRET_KEY);
         return { ok: true, token };
       } catch (error) {
         return { ok: false, error };
