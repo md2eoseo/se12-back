@@ -4,13 +4,13 @@ import client from '../../client';
 
 export default {
   Mutation: {
-    login: async (_, { email, password }) => {
+    login: async (_, { userId, password }) => {
       try {
-        // email로 유저 검색
-        const user = await client.user.findUnique({ where: { email } });
+        // userId 유저 검색
+        const user = await client.user.findUnique({ where: { userId } });
         // 검색되는 유저 없으면, 에러 발생
         if (!user) {
-          return { ok: false, error: '가입되지 않은 이메일입니다.' };
+          return { ok: false, error: '가입되지 않은 아이디입니다.' };
         }
         // 검색되는 유저 있으면, 비밀번호 비교
         const passwordMatch = await bcrypt.compare(password, user.password);
