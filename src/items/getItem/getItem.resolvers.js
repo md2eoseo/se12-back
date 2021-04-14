@@ -11,10 +11,9 @@ export default {
           },
         });
         if (!item) {
-          return { ok: true, item };
-        } else {
           return { ok: false, error: '찾고자 하는 책이 없습니다.' };
         }
+        return { ok: true, item };
       } catch (error) {
         return { ok: false, error };
       }
@@ -29,10 +28,9 @@ export default {
           },
         });
         if (!item) {
-          return { ok: true, item };
-        } else {
           return { ok: false, error: '찾고자 하는 책이 없습니다.' };
         }
+        return { ok: true, item };
       } catch (error) {
         return { ok: false, error };
       }
@@ -47,10 +45,9 @@ export default {
           },
         });
         if (!item) {
-          return { ok: true, item };
-        } else {
           return { ok: false, error: '찾고자 하는 책이 없습니다.' };
         }
+        return { ok: true, item };
       } catch (error) {
         return { ok: false, error };
       }
@@ -65,10 +62,9 @@ export default {
           },
         });
         if (!item) {
-          return { ok: true, item };
-        } else {
           return { ok: false, error: '찾고자 하는 책이 없습니다.' };
         }
+        return { ok: true, item };
       } catch (error) {
         return { ok: false, error };
       }
@@ -83,10 +79,9 @@ export default {
           },
         });
         if (!item) {
-          return { ok: true, item };
-        } else {
           return { ok: false, error: '찾고자 하는 책이 없습니다.' };
         }
+        return { ok: true, item };
       } catch (error) {
         return { ok: false, error };
       }
