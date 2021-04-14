@@ -26,3 +26,20 @@ enum Role {
   ADMIN
   CUSTOMER
 }
+
+model Banner {
+  id        Int            @id @default(autoincrement())
+  category  BannerCategory
+  banner    String?
+  title     String
+  contents  String?
+  startDate DateTime
+  endDate   DateTime?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+enum BannerCategory {
+  ANNOUNCEMENT
+  EVENT
+}
