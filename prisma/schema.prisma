@@ -34,7 +34,7 @@ model Banner {
   title     String
   contents  String?
   startDate DateTime
-  endDate   DateTime?
+  endDate   DateTime
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
 }
