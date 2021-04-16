@@ -8,7 +8,7 @@ export default gql`
     title: String!
     contents: String
     startDate: String!
-    endDate: String
+    endDate: String!
     createdAt: String!
     updatedAt: String!
   }
