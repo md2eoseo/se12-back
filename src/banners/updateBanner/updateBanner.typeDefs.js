@@ -9,11 +9,12 @@ export default gql`
     updateBanner(
       id: Int!
       category: BannerCategory
-      banner: String
+      imgUrl: String
       title: String
       contents: String
       startDate: String
       endDate: String
+      activate: Boolean
     ): UpdateBannerResponse!
   }
 `;

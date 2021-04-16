@@ -8,7 +8,7 @@ export default {
         const currentDate = new Date();
         const koreanDate = new Date(currentDate.getTime() + KR_TIME_DIFF);
         const banners = await client.banner.findMany({
-          where: { AND: [{ startDate: { lte: koreanDate } }, { endDate: { gte: koreanDate } }] },
+          where: { AND: [{ startDate: { lte: koreanDate } }, { endDate: { gte: koreanDate } }, { activate: true }] },
           orderBy: { startDate: 'desc' },
         });
         return { ok: true, banners };

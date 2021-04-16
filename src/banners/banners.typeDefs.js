@@ -4,11 +4,12 @@ export default gql`
   type Banner {
     id: Int!
     category: BannerCategory!
-    banner: String
+    imgUrl: String
     title: String!
     contents: String
     startDate: String!
     endDate: String!
+    activate: Boolean!
     createdAt: String!
     updatedAt: String!
   }

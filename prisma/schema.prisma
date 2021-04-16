@@ -30,11 +30,12 @@ enum Role {
 model Banner {
   id        Int            @id @default(autoincrement())
   category  BannerCategory
-  banner    String?
+  imgUrl    String?
   title     String
   contents  String?
   startDate DateTime
   endDate   DateTime
+  activate  Boolean        @default(false)
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
 }

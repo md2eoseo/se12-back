@@ -8,11 +8,12 @@ export default gql`
   type Mutation {
     createBanner(
       category: BannerCategory!
-      banner: String
+      imgUrl: String
       title: String!
       contents: String
       startDate: String!
       endDate: String!
+      activate: Boolean
     ): CreateBannerResponse!
   }
 `;
