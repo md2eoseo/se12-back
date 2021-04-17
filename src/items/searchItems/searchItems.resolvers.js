@@ -1,8 +1,9 @@
 import client from '../../client';
 
+const PAGE_SIZE = 20;
 export default {
   Query: {
-    searchItems: async (_, { term, categoryId, minPrice, maxPrice }) => {
+    searchItems: async (_, { term, categoryId, minPrice, maxPrice, lastId }) => {
       try {
         const items = await client.item.findMany({
           where: {
@@ -14,8 +15,13 @@ export default {
               { activate: true },
             ],
           },
+          orderBy: { createdAt: 'desc' },
+          take: PAGE_SIZE,
+          skip: lastId ? 1 : 0,
+          ...(lastId && { cursor: { id: lastId } }),
         });
-        return { ok: true, items };
+        const lastItemId = items[items.length - 1].id;
+        return { ok: true, items, lastId: lastItemId };
       } catch (error) {
         return { ok: false, error };
       }

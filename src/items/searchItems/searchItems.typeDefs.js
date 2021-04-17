@@ -5,8 +5,9 @@ export default gql`
     ok: Boolean!
     error: String
     items: [Item]
+    lastId: Int
   }
   type Query {
-    searchItems(term: String, categoryId: Int, minPrice: Int, maxPrice: Int): searchItemsResponse!
+    searchItems(term: String, categoryId: Int, minPrice: Int, maxPrice: Int, lastId: Int): searchItemsResponse!
   }
 `;
