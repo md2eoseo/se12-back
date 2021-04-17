@@ -23,4 +23,9 @@ export default gql`
     createdAt: String!
     updatedAt: String!
   }
+
+  enum SortMethod {
+    PRICE_LOW
+    PRICE_HIGH
+  }
 `;

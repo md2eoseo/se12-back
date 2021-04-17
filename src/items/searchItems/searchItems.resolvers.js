@@ -20,7 +20,10 @@ export default {
           skip: lastId ? 1 : 0,
           ...(lastId && { cursor: { id: lastId } }),
         });
-        const lastItemId = items[items.length - 1].id;
+        let lastItemId = null;
+        if (!items) {
+          lastItemId = items[items.length - 1].id;
+        }
         return { ok: true, items, lastId: lastItemId };
       } catch (error) {
         return { ok: false, error };
