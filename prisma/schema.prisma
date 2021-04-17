@@ -68,3 +68,8 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum SortMethod {
+  PRICE_LOW
+  PRICE_HIGH
+}
