@@ -10,6 +10,7 @@ export default gql`
       categoryId: Int!
       name: String!
       price: Int!
+      stock: Int
       imgUrl: String
       author: String
       contents: String

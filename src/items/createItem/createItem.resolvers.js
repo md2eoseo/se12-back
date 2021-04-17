@@ -2,7 +2,11 @@ import { Role } from '.prisma/client';
 import client from '../../client';
 import { protectedResolver } from '../../users/users.utils';
 
-const resolverFn = async (_, { categoryId, name, price, imgUrl, author, contents, publisher, pressDate, activate }, { loggedInUser }) => {
+const resolverFn = async (
+  _,
+  { categoryId, name, price, stock, imgUrl, author, contents, publisher, pressDate, activate },
+  { loggedInUser }
+) => {
   try {
     if (loggedInUser.role !== Role.ADMIN) {
       return { ok: false, error: '관리자만 접근할 수 있습니다.' };
@@ -14,11 +18,15 @@ const resolverFn = async (_, { categoryId, name, price, imgUrl, author, contents
     if (price < 0) {
       return { ok: false, error: '상품 가격이 유효하지 않습니다.' };
     }
+    if (stock < 0) {
+      return { ok: false, error: '상품 재고량이 유효하지 않습니다.' };
+    }
     await client.item.create({
       data: {
         categoryId,
         name: trimmedName,
         price,
+        stock,
         imgUrl,
         author,
         contents,
