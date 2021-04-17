@@ -12,25 +12,57 @@ generator client {
 
 model User {
   id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
+  role      Role     @default(CUSTOMER)
+  userId    String   @unique
   password  String
+  email     String   @unique
+  name      String
   address   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Item {
-  id        Int      @id @default(autoincrement())
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+model Banner {
+  id        Int            @id @default(autoincrement())
+  category  BannerCategory
+  imgUrl    String?
   title     String
-  author    String
-  price     Int
   contents  String?
-  category  String
-  publisher String
-  isbn      String   @unique
-  pressDate String
-  activate  Boolean
+  startDate DateTime
+  endDate   DateTime
+  activate  Boolean        @default(false)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+enum BannerCategory {
+  ANNOUNCEMENT
+  EVENT
+}
+
+model Item {
+  id         Int        @id @default(autoincrement())
+  categories Category[]
+  name       String
+  price      Int
+  author     String?
+  contents   String?
+  publisher  String?
+  pressDate  DateTime?
+  activate   Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  items     Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

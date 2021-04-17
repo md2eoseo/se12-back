@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server';
 
 export default gql`
-  type GetUserResponse {
+  type SeeBannersResponse {
     ok: Boolean!
     error: String
-    user: User
+    banners: [Banner]
   }
   type Query {
-    getUser(id: Int!): GetUserResponse!
+    seeBanners: SeeBannersResponse!
   }
 `;
