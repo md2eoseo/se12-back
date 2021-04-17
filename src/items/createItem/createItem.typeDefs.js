@@ -7,15 +7,15 @@ export default gql`
   }
   type Mutation {
     createItem(
-      title: String!
-      author: String!
+      categoryId: Int!
+      name: String!
       price: Int!
+      imgUrl: String
+      author: String
       contents: String
-      category: String!
-      publisher: String!
-      isbn: String!
-      pressDate: String!
-      activate: Boolean!
+      publisher: String
+      pressDate: String
+      activate: Boolean
     ): CreateItemResponse!
   }
 `;

@@ -2,15 +2,24 @@ import { gql } from 'apollo-server';
 
 export default gql`
   type Item {
-    title: String!
-    author: String!
+    id: Int!
+    categoryId: Int!
+    name: String!
     price: Int!
+    imgUrl: String
+    author: String
     contents: String
-    category: String!
-    publisher: String!
-    isbn: String!
-    pressDate: String!
-    activate: Boolean!
+    publisher: String
+    pressDate: String
+    activate: Boolean
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Category {
+    id: Int!
+    name: String!
+    items: [Item]
     createdAt: String!
     updatedAt: String!
   }

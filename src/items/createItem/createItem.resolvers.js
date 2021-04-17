@@ -1,37 +1,31 @@
+import { Role } from '.prisma/client';
 import client from '../../client';
+import { protectedResolver } from '../../users/users.utils';
+
+const resolverFn = async (_, { categoryId, name, price, imgUrl, author, contents, publisher, pressDate, activate }, { loggedInUser }) => {
+  try {
+    if (loggedInUser.role !== Role.ADMIN) {
+      return { ok: false, error: '관리자만 접근할 수 있습니다.' };
+    }
+    await client.item.create({
+      data: {
+        categoryId,
+        name,
+        price,
+        imgUrl,
+        author,
+        contents,
+        publisher,
+        pressDate,
+        activate,
+      },
+    });
+    return { ok: true };
+  } catch (error) {
+    return { ok: false, error };
+  }
+};
 
 export default {
-  Mutation: {
-    createItem: async (_, { title, author, price, contents, category, publisher, isbn, pressDate, activate }) => {
-      try {
-        const exist = await client.item.findFirst({
-          where: { isbn },
-        });
-
-        if (exist) {
-          return {
-            ok: false,
-            error: '존재하는 isbn 입니다.',
-          };
-        }
-
-        await client.item.create({
-          data: {
-            title,
-            author,
-            price,
-            contents,
-            category,
-            publisher,
-            isbn,
-            pressDate,
-            activate,
-          },
-        });
-        return { ok: true };
-      } catch (error) {
-        return { ok: false, error };
-      }
-    },
-  },
+  Mutation: { createItem: protectedResolver(resolverFn) },
 };
