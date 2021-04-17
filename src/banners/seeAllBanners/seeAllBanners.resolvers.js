@@ -7,7 +7,7 @@ const resolverFn = async (_, __, { loggedInUser }) => {
     if (loggedInUser.role !== Role.ADMIN) {
       return { ok: false, error: '관리자만 접근할 수 있습니다.' };
     }
-    const banners = await client.banner.findMany({ orderBy: { createdAt: 'desc' } });
+    const banners = await client.banner.findMany({ orderBy: { startDate: 'asc' } });
     return { ok: true, banners };
   } catch (error) {
     return { ok: false, error };
