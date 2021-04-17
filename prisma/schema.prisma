@@ -50,6 +50,7 @@ model Item {
   categories Category[]
   name       String
   price      Int
+  imgUrl     String?
   author     String?
   contents   String?
   publisher  String?
