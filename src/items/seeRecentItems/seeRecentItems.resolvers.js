@@ -1,14 +1,14 @@
 import client from '../../client';
 
-const ITEM_LIMIT = 6;
+const ITEM_LIMIT = 5;
 
 export default {
   Query: {
-    seeRecentItems: async () => {
+    seeRecentItems: async (_, { count }) => {
       try {
         const items = await client.item.findMany({
           orderBy: { createdAt: 'desc' },
-          take: ITEM_LIMIT,
+          take: count || ITEM_LIMIT,
         });
 
         return { ok: true, items };

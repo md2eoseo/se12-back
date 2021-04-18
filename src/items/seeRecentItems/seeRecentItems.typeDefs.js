@@ -7,6 +7,6 @@ export default gql`
     items: [Item]
   }
   type Query {
-    seeRecentItems: SeeRecentItemsResponse!
+    seeRecentItems(count: Int): SeeRecentItemsResponse!
   }
 `;
