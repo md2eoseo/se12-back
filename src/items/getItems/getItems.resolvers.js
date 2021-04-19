@@ -13,13 +13,13 @@ const resolverFn = async (_, { term, sortMethod, minPrice, maxPrice, lastId }, {
         AND: [{ name: { contains: term } }, { price: { gte: minPrice } }, { price: { lte: maxPrice } }],
       },
       // TODO: 'PRICE_LOW' => SortMethod.PRICE_LOW
-      orderBy: [...(sortMethod && [{ price: sortMethod === 'PRICE_LOW' ? 'asc' : 'desc' }]), { createdAt: 'desc' }],
+      orderBy: [...(sortMethod ? [{ price: sortMethod === 'PRICE_LOW' ? 'asc' : 'desc' }] : []), { createdAt: 'desc' }],
       take: PAGE_SIZE,
       skip: lastId ? 1 : 0,
       ...(lastId && { cursor: { id: lastId } }),
     });
     let lastItemId = null;
-    if (!items) {
+    if (items.length) {
       lastItemId = items[items.length - 1].id;
     }
     return { ok: true, items, lastId: lastItemId };
