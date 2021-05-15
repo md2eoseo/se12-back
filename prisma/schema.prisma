@@ -57,7 +57,7 @@ model Item {
   contents   String?
   publisher  String?
   pressDate  DateTime?
-  activate   Boolean   @default(false)
+  activate   Boolean   @default(true)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
