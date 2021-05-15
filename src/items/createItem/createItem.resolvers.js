@@ -1,5 +1,6 @@
 import { Role } from '.prisma/client';
 import client from '../../client';
+import { uploadToS3 } from '../../shared/shared.utils';
 import { protectedResolver } from '../../users/users.utils';
 
 const resolverFn = async (
@@ -10,6 +11,10 @@ const resolverFn = async (
   try {
     if (loggedInUser.role !== Role.ADMIN) {
       return { ok: false, error: '관리자만 접근할 수 있습니다.' };
+    }
+    let imgUrlFromS3;
+    if (imgUrl) {
+      imgUrlFromS3 = await uploadToS3(imgUrl, loggedInUser.id, 'item');
     }
     const trimmedName = name.trim();
     if (trimmedName === '') {
@@ -27,7 +32,7 @@ const resolverFn = async (
         name: trimmedName,
         price,
         stock,
-        imgUrl,
+        imgUrl: imgUrlFromS3,
         author,
         contents,
         publisher,
