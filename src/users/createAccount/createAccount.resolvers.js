@@ -6,14 +6,19 @@ export default {
     createAccount: async (_, { userId, password, email, name, address, role }) => {
       try {
         // 존재하는 userId, email인지 확인
-        const exist = await client.user.findFirst({
-          where: { OR: [{ userId }, { email }] },
+        const userIdExist = await client.user.findUnique({
+          where: { userId },
+        });
+        const emailExist = await client.user.findFirst({
+          where: { email },
         });
         // 존재하는 userId, email이라면, 에러 발생
-        if (exist) {
+        if (userIdExist || emailExist) {
           return {
             ok: false,
             error: '사용 중인 아이디/이메일입니다.',
+            userIdExist: Boolean(userIdExist),
+            emailExist: Boolean(emailExist),
           };
         }
         // password rule 체크
