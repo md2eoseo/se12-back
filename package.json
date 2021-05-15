@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "dev": "nodemon --exec babel-node src/server.js --delay 2",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio",
@@ -25,6 +26,7 @@
     "@babel/cli": "^7.13.14",
     "@prisma/client": "^2.20.1",
     "apollo-server": "^2.22.1",
+    "aws-sdk": "^2.907.0",
     "bcrypt": "^5.0.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.4",
@@ -39,5 +41,9 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "prisma": "^2.20.1"
+  },
+  "resolutions": {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^11.0.0"
   }
 }
