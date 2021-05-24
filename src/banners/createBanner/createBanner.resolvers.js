@@ -12,7 +12,7 @@ const resolverFn = async (_, { imgUrl, title, contents, category, startDate, end
     if (trimmedTitle === '') {
       return { ok: false, error: '제목을 입력해주세요.' };
     }
-    if (endDate <= startDate) {
+    if (endDate < startDate) {
       return { ok: false, error: '유효한 기간 설정을 해주세요.' };
     }
     let imgUrlFromS3;
