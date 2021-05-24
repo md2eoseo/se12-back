@@ -51,7 +51,7 @@ model Item {
   categoryId Int
   name       String
   price      Int
-  stock      Int       @default(0)
+  stock      Int       @default(10)
   imgUrl     String?
   author     String?
   contents   String?
