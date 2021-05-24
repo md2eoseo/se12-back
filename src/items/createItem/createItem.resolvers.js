@@ -12,10 +12,6 @@ const resolverFn = async (
     if (loggedInUser.role !== Role.ADMIN) {
       return { ok: false, error: '관리자만 접근할 수 있습니다.' };
     }
-    let imgUrlFromS3;
-    if (imgUrl) {
-      imgUrlFromS3 = await uploadToS3(imgUrl, loggedInUser.id, 'item');
-    }
     const trimmedName = name.trim();
     if (trimmedName === '') {
       return { ok: false, error: '상품 이름을 입력해주세요.' };
@@ -25,6 +21,10 @@ const resolverFn = async (
     }
     if (stock < 0) {
       return { ok: false, error: '상품 재고량이 유효하지 않습니다.' };
+    }
+    let imgUrlFromS3;
+    if (imgUrl) {
+      imgUrlFromS3 = await uploadToS3(imgUrl, loggedInUser.id, 'item');
     }
     await client.item.create({
       data: {
