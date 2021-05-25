@@ -8,7 +8,7 @@ export default gql`
     name: String!
     price: Int!
     stock: Int!
-    imgUrl: String
+    imgUrl: [String]
     author: String
     contents: String
     publisher: String
