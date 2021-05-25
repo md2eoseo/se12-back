@@ -1,6 +1,6 @@
 import { Role } from '.prisma/client';
 import client from '../../client';
-import { uploadToS3 } from '../../shared/shared.utils';
+import { uploadMultipleToS3 } from '../../shared/shared.utils';
 import { protectedResolver } from '../../users/users.utils';
 
 const resolverFn = async (
@@ -24,8 +24,9 @@ const resolverFn = async (
     }
     let imgUrlFromS3;
     if (imgUrl) {
-      imgUrlFromS3 = await uploadToS3(imgUrl, loggedInUser.id, 'item');
+      imgUrlFromS3 = await uploadMultipleToS3(imgUrl, loggedInUser.id, 'item');
     }
+    console.log(imgUrlFromS3);
     await client.item.create({
       data: {
         categoryId,

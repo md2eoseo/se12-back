@@ -11,7 +11,7 @@ export default gql`
       name: String!
       price: Int!
       stock: Int
-      imgUrl: Upload
+      imgUrl: [Upload]
       author: String
       contents: String
       publisher: String

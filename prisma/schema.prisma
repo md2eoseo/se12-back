@@ -52,7 +52,7 @@ model Item {
   name       String
   price      Int
   stock      Int       @default(10)
-  imgUrl     String?
+  imgUrl     String[]
   author     String?
   contents   String?
   publisher  String?
