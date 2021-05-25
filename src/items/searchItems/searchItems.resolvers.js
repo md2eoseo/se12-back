@@ -21,7 +21,7 @@ export default {
           ...(lastId && { cursor: { id: lastId } }),
         });
         let lastItemId = null;
-        if (!items) {
+        if (items) {
           lastItemId = items[items.length - 1].id;
         }
         return { ok: true, items, lastId: lastItemId };

@@ -26,7 +26,6 @@ const resolverFn = async (
     if (imgUrl) {
       imgUrlFromS3 = await uploadMultipleToS3(imgUrl, loggedInUser.id, 'item');
     }
-    console.log(imgUrlFromS3);
     await client.item.create({
       data: {
         categoryId,
