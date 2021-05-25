@@ -18,6 +18,7 @@ model User {
   email     String   @unique
   name      String
   address   String?
+  bag       Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -60,6 +61,8 @@ model Item {
   activate   Boolean   @default(true)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     Int?
 }
 
 model Category {
