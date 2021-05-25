@@ -11,21 +11,31 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  role      Role     @default(CUSTOMER)
-  userId    String   @unique
+  id        Int       @id @default(autoincrement())
+  role      Role      @default(CUSTOMER)
+  userId    String    @unique
   password  String
-  email     String   @unique
+  email     String    @unique
   name      String
   address   String?
-  bag       Item[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  bag       BagItem[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum Role {
   ADMIN
   CUSTOMER
+}
+
+model BagItem {
+  id        Int      @id @default(autoincrement())
+  itemId    Int
+  quantity  Int      @default(1)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Banner {
@@ -61,8 +71,6 @@ model Item {
   activate   Boolean   @default(true)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
-  User       User?     @relation(fields: [userId], references: [id])
-  userId     Int?
 }
 
 model Category {
