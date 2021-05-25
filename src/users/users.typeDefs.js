@@ -10,6 +10,7 @@ export default gql`
     name: String!
     address: String
     bag: [BagItem]
+    totalBagItems: Int!
     createdAt: String!
     updatedAt: String!
   }
