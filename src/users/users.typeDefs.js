@@ -9,6 +9,7 @@ export default gql`
     email: String!
     name: String!
     address: String
+    bag: [BagItem]
     createdAt: String!
     updatedAt: String!
   }
@@ -16,5 +17,13 @@ export default gql`
   enum Role {
     ADMIN
     CUSTOMER
+  }
+
+  type BagItem {
+    id: Int!
+    itemId: Int!
+    quantity: Int!
+    user: User!
+    userId: Int!
   }
 `;
