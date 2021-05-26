@@ -30,6 +30,7 @@ enum Role {
 
 model BagItem {
   id        Int      @id @default(autoincrement())
+  item      Item     @relation(fields: [itemId], references: [id])
   itemId    Int
   quantity  Int      @default(1)
   user      User     @relation(fields: [userId], references: [id])
@@ -71,6 +72,7 @@ model Item {
   activate   Boolean   @default(true)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
+  bag        BagItem[]
 }
 
 model Category {

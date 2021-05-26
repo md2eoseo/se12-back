@@ -11,9 +11,8 @@ export default {
         if (!user) {
           return { ok: false, error: '존재하지 않는 사용자입니다.' };
         }
-        const itemIds = user.bag.map(bagItem => bagItem.itemId);
-        const items = await client.item.findMany({ where: { id: { in: itemIds } } });
-        return { ok: true, items };
+        const bagItems = await client.bagItem.findMany({ where: { userId: loggedInUser.id }, include: { user: true, item: true } });
+        return { ok: true, bagItems };
       } catch (error) {
         return { ok: false, error };
       }

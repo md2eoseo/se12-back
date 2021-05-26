@@ -4,7 +4,7 @@ export default gql`
   type seeBagResponse {
     ok: Boolean!
     error: String
-    items: [Item]
+    bagItems: [BagItem]
   }
   type Query {
     seeBag: seeBagResponse!

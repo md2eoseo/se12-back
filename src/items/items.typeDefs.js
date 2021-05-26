@@ -30,4 +30,13 @@ export default gql`
     PRICE_LOW
     PRICE_HIGH
   }
+
+  type BagItem {
+    id: Int!
+    item: Item!
+    itemId: Int!
+    quantity: Int!
+    user: User!
+    userId: Int!
+  }
 `;
