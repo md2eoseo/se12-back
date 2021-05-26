@@ -15,7 +15,7 @@ export default {
           return { ok: false, error: '장바구니에 담긴 상품 개수가 1개입니다.' };
         }
         await client.bagItem.update({ where: { id: bagItemId }, data: { quantity: bagItem.quantity + quantity } });
-        return { ok: true };
+        return { ok: true, quantity: bagItem.quantity + quantity };
       } catch (error) {
         return { ok: false, error };
       }
