@@ -12,7 +12,7 @@ export default gql`
       name: String
       price: Int
       stock: Int
-      imgUrl: String
+      imgUrl: [Upload]
       author: String
       contents: String
       publisher: String
