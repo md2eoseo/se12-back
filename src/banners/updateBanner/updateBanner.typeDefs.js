@@ -9,7 +9,7 @@ export default gql`
     updateBanner(
       id: Int!
       category: BannerCategory
-      imgUrl: String
+      imgUrl: Upload
       title: String
       contents: String
       startDate: String
