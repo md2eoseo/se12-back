@@ -3,9 +3,11 @@ import client from '../../client';
 import { uploadMultipleToS3 } from '../../shared/shared.utils';
 import { protectedResolver } from '../../users/users.utils';
 
+const MAX_INT = 2147483647;
+
 const resolverFn = async (
   _,
-  { categoryId, name, price, stock, imgUrl, author, contents, publisher, pressDate, activate },
+  { categoryId, name, price, stock, imgUrl, shippingFee, author, contents, publisher, pressDate, activate },
   { loggedInUser }
 ) => {
   try {
@@ -16,8 +18,11 @@ const resolverFn = async (
     if (trimmedName === '') {
       return { ok: false, error: '상품 이름을 입력해주세요.' };
     }
-    if (price < 0) {
+    if (price < 0 || price > MAX_INT) {
       return { ok: false, error: '상품 가격이 유효하지 않습니다.' };
+    }
+    if (shippingFee < 0 || shippingFee > MAX_INT) {
+      return { ok: false, error: '상품 배송비가 유효하지 않습니다.' };
     }
     if (stock < 0) {
       return { ok: false, error: '상품 재고량이 유효하지 않습니다.' };
@@ -33,6 +38,7 @@ const resolverFn = async (
         price,
         stock,
         imgUrl: imgUrlFromS3,
+        shippingFee,
         author,
         contents,
         publisher,

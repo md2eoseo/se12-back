@@ -58,21 +58,22 @@ enum BannerCategory {
 }
 
 model Item {
-  id         Int       @id @default(autoincrement())
-  category   Category  @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  name       String
-  price      Int
-  stock      Int       @default(10)
-  imgUrl     String[]
-  author     String?
-  contents   String?
-  publisher  String?
-  pressDate  DateTime?
-  activate   Boolean   @default(true)
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  bag        BagItem[]
+  id          Int       @id @default(autoincrement())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  name        String
+  price       Int
+  stock       Int       @default(10)
+  imgUrl      String[]
+  shippingFee Int       @default(2500)
+  author      String?
+  contents    String?
+  publisher   String?
+  pressDate   DateTime?
+  activate    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bag         BagItem[]
 }
 
 model Category {
